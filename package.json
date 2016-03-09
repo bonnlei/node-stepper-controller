@@ -1,0 +1,19 @@
+{
+  "name": "node-stepper-controller",
+  "version": "0.0.1",
+  "description": "A stepper motor controller",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "Stepper",
+    "Motor",
+    "28BYJ-48",
+    "ULN2003",
+    "NodeJs",
+    "ArchLinux"
+  ],
+  "author": "Lei Wang",
+  "license": "MIT"
+}
