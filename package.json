@@ -4,7 +4,9 @@
   "description": "A stepper motor controller",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "NODE_ENV=test ./node_modules/.bin/mocha -R spec test/unit-test.js",
+    "test-debug": "NODE_ENV=test ./node_modules/.bin/mocha -R spec --debug-brk test/unit-test.js",
+    "test-int": "NODE_ENV=test ./node_modules/.bin/mocha -R spec --require mocha-steps test/int-test.js"
   },
   "keywords": [
     "Stepper",
@@ -15,5 +17,21 @@
     "ArchLinux"
   ],
   "author": "Lei Wang",
-  "license": "MIT"
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bonnlei/node-stepper-controller.git"
+  },
+  "dependencies": {
+    "lodash": "^4.6.1",
+    "sleep": "^3.0.1"
+  },
+  "devDependencies": {
+    "node-arch-cubie-gpio": "https://github.com/bonnlei/node-arch-cubie-gpio/tarball/v0.0.1",
+    "eslint": "^2.3.0",
+    "mocha": "^2.4.5",
+    "mocha-steps": "^1.0.0",
+    "should": "^8.2.2",
+    "sinon": "^1.17.3"
+  }
 }
