@@ -14,8 +14,8 @@
 2. Links between motor driver and Cubieboad:
     * PG3 => IN1
     * PG1 => IN2
-    * PG4 => IN3
-    * PG6 => IN4
+    * PG6 => IN3
+    * PG8 => IN4
     
 
 ## References

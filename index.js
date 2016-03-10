@@ -11,12 +11,12 @@ var sleep = require('sleep');
  * @param {Object} options.gpio - node-arch-cubie-gpio object
  * @param {String} [options.IN1 ='PG3'] - gpio to IN1
  * @param {String} [options.IN2 ='PG1'] - gpio to IN2
- * @param {String} [options.IN3 ='PG4'] - gpio to IN3
- * @param {String} [options.IN4 ='PG6'] - gpio to IN4
+ * @param {String} [options.IN3 ='PG6'] - gpio to IN3
+ * @param {String} [options.IN4 ='PG8'] - gpio to IN4
  */
 function stepper(options) {
 
-    this.options = _.defaults(options, {'IN1': 'PG3'}, {'IN2': 'PG1'}, {'IN3': 'PG4'}, {'IN4': 'PG6'});
+    this.options = _.defaults(options, {'IN1': 'PG3'}, {'IN2': 'PG1'}, {'IN3': 'PG6'}, {'IN4': 'PG8'});
 
     if (_.isObject(this.options.gpio)) {
         this.gpio = this.options.gpio;
