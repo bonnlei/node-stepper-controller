@@ -4,13 +4,12 @@ var Stepper = require('../index');
 var GPIO = require('node-arch-cubie-gpio');
 var gpio = new GPIO({});
 var stepper = new Stepper({gpio: gpio});
-var step = require('mocha-steps');
-
+require('should');
 
 describe('Stepper', function () {
 
 
-    step('run by round', function () {
+    it('run by round', function () {
 
         console.log('start: run 1/4 round');
 
@@ -21,7 +20,7 @@ describe('Stepper', function () {
 
     });
 
-    step('run by degree', function () {
+    it('run by degree', function () {
 
         console.log('start: run 90 degree');
 
@@ -29,7 +28,6 @@ describe('Stepper', function () {
         stepper.runByDegree(90, 1);
 
         console.log('start: run 90 degree');
-        
 
     });
 
