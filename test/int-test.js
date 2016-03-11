@@ -7,7 +7,7 @@ var stepper = new Stepper({gpio: gpio});
 require('should');
 
 describe('Stepper', function () {
-
+    this.timeout(30000);
 
     it('run by round', function () {
 
@@ -15,7 +15,7 @@ describe('Stepper', function () {
 
         stepper.options.IN1.should.be.equal('PG3');
         stepper.runByRound(1 / 4, 1);
-
+        stepper.stop();
         console.log('end: run 1/4 round');
 
     });
@@ -26,7 +26,7 @@ describe('Stepper', function () {
 
         stepper.options.IN1.should.be.equal('PG3');
         stepper.runByDegree(90, 0);
-
+        stepper.stop();
         console.log('start: run 90 degree');
 
     });
