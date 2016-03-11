@@ -96,7 +96,6 @@ function stepper(options) {
         for (var j = 0; j < pulses.length; j++) {
             this.generatePulse(pulses[j]);
         }
-        sleep.usleep(900);
 
 
     };
@@ -104,6 +103,7 @@ function stepper(options) {
     this.generatePulse = function (pulse) {
         for (var i = 0; i < this.pins.length; i++) {
             this.gpio.writeToPin(this.pins[i], _.toString(pulse[i]));
+            sleep.usleep(900);
         }
     };
 
