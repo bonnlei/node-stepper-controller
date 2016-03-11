@@ -29,7 +29,7 @@
   "devDependencies": {
     "eslint": "^2.3.0",
     "mocha": "^2.4.5",
-    "node-arch-cubie-gpio": "https://github.com/bonnlei/node-arch-cubie-gpio/tarball/v0.0.2",
+    "node-arch-cubie-gpio": "https://github.com/bonnlei/node-arch-cubie-gpio/tarball/v0.1.1",
     "should": "^8.2.2",
     "sinon": "^1.17.3"
   }

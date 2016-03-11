@@ -25,7 +25,7 @@ function stepper(options) {
     }
 
     this.stepsProRound = 256;
-    this.options.gpio.activatePinsOutput(this.pins);
+
     this.fullStep = [
         [1, 1, 0, 0],
         [0, 1, 1, 0],
@@ -36,7 +36,20 @@ function stepper(options) {
         [0, 0, 1, 1],
         [1, 0, 0, 1]
     ];
-    this.pins = [this.options.IN1, this.options.IN2, this.options.IN3, this.options.IN4]
+
+    this.pins = [
+        this.gpio.getPin(this.options.IN1),
+        this.gpio.getPin(this.options.IN2),
+        this.gpio.getPin(this.options.IN3),
+        this.gpio.getPin(this.options.IN4)
+    ];
+
+    var self = this;
+
+    _.forEach(this.pins, function (pin) {
+        self.gpio.activatePin(pin, 'out');
+    });
+
 
     /**
      * Run Motor By Round
@@ -90,13 +103,13 @@ function stepper(options) {
 
     this.generatePulse = function (pulse) {
         for (var i = 0; i < this.pins.length; i++) {
-            this.gpio.write(this.pins[i], _.toString(pulse[i]));
+            this.gpio.writeToPin(this.pins[i], _.toString(pulse[i]));
         }
     };
 
     this.stop = function () {
         for (var i = 0; i < 4; i++) {
-            this.gpio.write(this.pins[i], '0');
+            this.gpio.writeToPin(this.pins[i], '0');
         }
     };
 

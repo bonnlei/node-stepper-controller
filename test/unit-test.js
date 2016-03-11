@@ -4,22 +4,23 @@ var Stepper = require('../index');
 require('should');
 var sinon = require('sinon');
 var GPIO = require('node-arch-cubie-gpio');
-var gpio, gpioWriter, gpioActivator;
+var gpio, gpioWriter, gpioActivator, reader;
 
 
 describe('Stepper', function () {
 
     beforeEach(function () {
+
         var settings = {pinsFilename: __dirname + '/fixture/pins'};
         gpio = new GPIO(settings);
 
-        gpioWriter = sinon.spy(gpio, 'write');
-        gpioActivator = sinon.spy(gpio, 'activatePinsOutput');
+        gpioWriter = sinon.stub(gpio, 'writeToPin');
+        gpioActivator = sinon.stub(gpio, 'activatePin');
     });
 
     afterEach(function () {
-        gpio.write.restore();
-        gpio.activatePinsOutput.restore();
+        gpioWriter.restore();
+        gpioActivator.restore();
     });
 
     it('run by round', function () {
@@ -29,11 +30,13 @@ describe('Stepper', function () {
 
         stepper.runByRound(1 / 4, 1);
 
-        gpioActivator.callCount.should.be.equal(1);
+        gpioActivator.callCount.should.be.equal(4);
+        gpioActivator.args[0][0].should.be.equal(195);
+        gpioActivator.args[0][1].should.be.equal('out');
         gpioWriter.callCount.should.be.equal(1 / 4 * stepper.stepsProRound * 8 * stepper.pins.length);
-        gpioWriter.args[0][0].should.be.equal('PG3');
+        gpioWriter.args[0][0].should.be.equal(195);
         gpioWriter.args[0][1].should.be.equal('1');
-        gpioWriter.args[1][0].should.be.equal('PG1');
+        gpioWriter.args[1][0].should.be.equal(193);
         gpioWriter.args[1][1].should.be.equal('0');
     });
 
@@ -44,11 +47,11 @@ describe('Stepper', function () {
 
         stepper.runByDegree(90, 1);
 
-        gpioActivator.callCount.should.be.equal(1);
+        gpioActivator.callCount.should.be.equal(4);
         gpioWriter.callCount.should.be.equal(1 / 4 * stepper.stepsProRound * 8 * stepper.pins.length);
-        gpioWriter.args[0][0].should.be.equal('PG3');
+        gpioWriter.args[0][0].should.be.equal(195);
         gpioWriter.args[0][1].should.be.equal('1');
-        gpioWriter.args[1][0].should.be.equal('PG1');
+        gpioWriter.args[1][0].should.be.equal(193);
         gpioWriter.args[1][1].should.be.equal('0');
     });
 

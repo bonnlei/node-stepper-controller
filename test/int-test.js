@@ -25,7 +25,7 @@ describe('Stepper', function () {
         console.log('start: run 90 degree');
 
         stepper.options.IN1.should.be.equal('PG3');
-        stepper.runByDegree(90, 1);
+        stepper.runByDegree(90, 0);
 
         console.log('start: run 90 degree');
 
