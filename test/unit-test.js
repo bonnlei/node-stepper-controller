@@ -9,6 +9,8 @@ var gpio, gpioWriter, gpioActivator, reader;
 
 describe('Stepper', function () {
 
+    this.timeout(10000);
+
     beforeEach(function () {
 
         var settings = {pinsFilename: __dirname + '/fixture/pins'};
@@ -35,7 +37,7 @@ describe('Stepper', function () {
         gpioActivator.args[0][1].should.be.equal('out');
         gpioWriter.callCount.should.be.equal(1 / 4 * stepper.stepsProRound * 8 * stepper.pins.length);
         gpioWriter.args[0][0].should.be.equal(195);
-        gpioWriter.args[0][1].should.be.equal('1');
+        gpioWriter.args[0][1].should.be.equal('0');
         gpioWriter.args[1][0].should.be.equal(193);
         gpioWriter.args[1][1].should.be.equal('0');
     });
@@ -50,7 +52,7 @@ describe('Stepper', function () {
         gpioActivator.callCount.should.be.equal(4);
         gpioWriter.callCount.should.be.equal(1 / 4 * stepper.stepsProRound * 8 * stepper.pins.length);
         gpioWriter.args[0][0].should.be.equal(195);
-        gpioWriter.args[0][1].should.be.equal('1');
+        gpioWriter.args[0][1].should.be.equal('0');
         gpioWriter.args[1][0].should.be.equal(193);
         gpioWriter.args[1][1].should.be.equal('0');
     });

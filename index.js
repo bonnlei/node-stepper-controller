@@ -110,12 +110,9 @@ function stepper(options) {
     this.runStep = function (direction) {
 
         var pulses = this.fullStep
-        if (direction === 1) {
-            _.reverse(pulses);
-        }
 
         for (var j = 0; j < pulses.length; j++) {
-            var p = pulses[j];
+            var p = pulses[j].slice(0);
             if (direction === 1) {
                 _.reverse(p);
             }
