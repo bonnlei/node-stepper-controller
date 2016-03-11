@@ -4,7 +4,7 @@ var Stepper = require('../index');
 require('should');
 var sinon = require('sinon');
 var GPIO = require('node-arch-cubie-gpio');
-var gpio, gpioWriter, gpioActivator, reader;
+var gpio, gpioWriter, gpioActivator;
 
 
 describe('Stepper', function () {
