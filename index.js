@@ -27,13 +27,13 @@ function stepper(options) {
     this.stepsProRound = 256;
 
     this.fullStep = [
-        [1, 1, 0, 0],
-        [0, 1, 1, 0],
+        [0, 0, 0, 1],
         [0, 0, 1, 1],
-        [1, 0, 0, 1],
-        [1, 1, 0, 0],
+        [0, 0, 1, 0],
         [0, 1, 1, 0],
-        [0, 0, 1, 1],
+        [0, 1, 0, 0],
+        [1, 1, 0, 0],
+        [1, 0, 0, 0],
         [1, 0, 0, 1]
     ];
 
@@ -89,7 +89,7 @@ function stepper(options) {
     this.runStep = function (direction) {
 
         var pulses = this.fullStep
-        if (direction === 1) {
+        if (direction === 0) {
             _.reverse(pulses);
         }
 
@@ -103,7 +103,7 @@ function stepper(options) {
     this.generatePulse = function (pulse) {
         for (var i = 0; i < this.pins.length; i++) {
             this.gpio.writeToPin(this.pins[i], _.toString(pulse[i]));
-            sleep.usleep(900);
+            sleep.sleep(1);
         }
     };
 
